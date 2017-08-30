@@ -27,20 +27,15 @@ class LocalTrackController: UITableViewController {
     func loadMoreTracks(){
         if let countryCode = (Locale.current as NSLocale).object(forKey: .countryCode) as? String {
             let countryName = getCountryName(from: countryCode)
-            if var urlComponents = URLComponents(string: "https://ws.audioscrobbler.com/2.0/") {
-                urlComponents.query = "method=geo.gettoptracks&page=\(currentPage+1)&country=\(countryName)&api_key=55b8c3a1d79ea8d23fd7bf19596ed6d1&format=json"
-                if let url = urlComponents.url {
-                    trackService.getTopTracks(url) {
-                        [unowned self] results, pageIndex, totalPages, errorMessage in
-                        if let results = results {
-                            self.controller.tracks.append(contentsOf: results)
-                            self.tableView.reloadData()
-                            self.currentPage = pageIndex + 1
-                            self.totalPages = totalPages
-                            self.navigationItem.title = "\(countryName) Top Tracks"
-                            if !errorMessage.isEmpty { print("Service error: " + errorMessage); }
-                        }
-                    }
+            trackService.getTopTracks(currentPage+1, countryName) {
+                [unowned self] results, pageIndex, totalPages, errorMessage in
+                if let results = results {
+                    self.controller.tracks.append(contentsOf: results)
+                    self.tableView.reloadData()
+                    self.currentPage = pageIndex + 1
+                    self.totalPages = totalPages
+                    self.navigationItem.title = "\(countryName) Top Tracks"
+                    if !errorMessage.isEmpty { print("Service error: " + errorMessage); }
                 }
             }
         }
@@ -51,6 +46,8 @@ class LocalTrackController: UITableViewController {
         super.viewDidLoad()
         self.tableView.dataSource = controller
         trackService = TrackService.sharedTrackService
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 25
         loadMoreTracks()
     }
 
@@ -87,6 +84,7 @@ class LocalTrackController: UITableViewController {
         infoVC.navigationItem.title = controller.tracks[indexPath.row].name
         infoVC.trackName = controller.tracks[indexPath.row].name
         infoVC.artistName = controller.tracks[indexPath.row].artist
+        infoVC.imageLink = controller.tracks[indexPath.row].largeImage
     }
 
 }

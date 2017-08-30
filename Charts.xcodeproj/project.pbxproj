@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F343A8531F56C46F001EBEB2 /* TrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F343A8521F56C46F001EBEB2 /* TrackTableViewCell.swift */; };
 		F35BF48C1F569A4100A27D12 /* AlbumTrackListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F35BF48B1F569A4100A27D12 /* AlbumTrackListCell.xib */; };
 		F35BF48E1F569AE400A27D12 /* AlbumTrackListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35BF48D1F569AE400A27D12 /* AlbumTrackListCell.swift */; };
 		F3759C9A1F55476E001868D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3759C991F55476E001868D8 /* AppDelegate.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F343A8521F56C46F001EBEB2 /* TrackTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackTableViewCell.swift; sourceTree = "<group>"; };
 		F35BF48B1F569A4100A27D12 /* AlbumTrackListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumTrackListCell.xib; sourceTree = "<group>"; };
 		F35BF48D1F569AE400A27D12 /* AlbumTrackListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTrackListCell.swift; sourceTree = "<group>"; };
 		F3759C961F55476E001868D8 /* Charts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Charts.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				F35BF48D1F569AE400A27D12 /* AlbumTrackListCell.swift */,
+				F343A8521F56C46F001EBEB2 /* TrackTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				F3759C9A1F55476E001868D8 /* AppDelegate.swift in Sources */,
 				F35BF48E1F569AE400A27D12 /* AlbumTrackListCell.swift in Sources */,
 				F3759CB61F5567E2001868D8 /* TrackTableViewController.swift in Sources */,
+				F343A8531F56C46F001EBEB2 /* TrackTableViewCell.swift in Sources */,
 				F3759CAE1F554D55001868D8 /* Track.swift in Sources */,
 				F3759CB41F556774001868D8 /* ImageViewExtension.swift in Sources */,
 				F3759CB21F555017001868D8 /* TrackService.swift in Sources */,

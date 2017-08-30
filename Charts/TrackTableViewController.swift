@@ -22,13 +22,10 @@ class TrackTableViewController: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TrackTableViewController.cellId, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: TrackTableViewController.cellId, for: indexPath) as! TrackTableViewCell
         
-        cell.imageView?.downloadedFrom(link: tracks[indexPath.row].image)
-        cell.textLabel?.text = tracks[indexPath.row].name
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.lineBreakMode = .byWordWrapping
-        cell.detailTextLabel?.text = tracks[indexPath.row].artist
+        cell.track = tracks[indexPath.row]
+        cell.updateContents()
         
         return cell
     }

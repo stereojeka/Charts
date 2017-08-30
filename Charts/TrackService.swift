@@ -24,6 +24,41 @@ final class TrackService {
     let defaultSession = URLSession(configuration: .default)
     var dataTask: URLSessionDataTask?
     
+    enum UrlUsage {
+        case topWorld(Int)
+        case topCountry(Int, String)
+        case singleTrack(String, String)
+        case trackList(String)
+    }
+    
+    fileprivate func getUrlBy(usage: UrlUsage) -> URL? {
+        if var urlComponents = URLComponents(string: "https://ws.audioscrobbler.com/2.0/") {
+            switch usage {
+            case .topWorld(let page):
+                urlComponents.query = "method=chart.gettoptracks&page=\(page)&api_key=55b8c3a1d79ea8d23fd7bf19596ed6d1&format=json"
+                if let url = urlComponents.url {
+                    return url
+                }
+            case .topCountry(let page, let country):
+                urlComponents.query = "method=geo.gettoptracks&page=\(page)&country=\(country)&api_key=55b8c3a1d79ea8d23fd7bf19596ed6d1&format=json"
+                if let url = urlComponents.url {
+                    return url
+                }
+            case .singleTrack(let artist, let trackName):
+                urlComponents.query = "method=track.getInfo&api_key=55b8c3a1d79ea8d23fd7bf19596ed6d1&artist=\(artist)&track=\(trackName)&format=json"
+                if let url = urlComponents.url {
+                    return url
+                }
+            case .trackList(let albumId):
+                urlComponents.query = "method=album.getinfo&api_key=55b8c3a1d79ea8d23fd7bf19596ed6d1&mbid=\(albumId)&format=json"
+                if let url = urlComponents.url {
+                    return url
+                }
+            }
+        }
+        return nil
+    }
+    
     fileprivate func makeRequest(url: URL, onCompletion: @escaping (Data?, String) -> Void) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         dataTask = defaultSession.dataTask(with: url) { [unowned self] data, response, error in
@@ -40,8 +75,14 @@ final class TrackService {
         }
     }
     
-    func getTopTracks(_ url: URL, onCompletion: @escaping TracksResult) {
+    func getTopTracks(_ page: Int, _ country: String?, onCompletion: @escaping TracksResult) {
         dataTask?.cancel()
+        var url: URL
+        if let country = country {
+            url = getUrlBy(usage: UrlUsage.topCountry(page, country))!
+        } else {
+            url = getUrlBy(usage: UrlUsage.topWorld(page))!
+        }
         makeRequest(url: url) { [unowned self] data, error in
             defer { self.dataTask = nil }
             if let data = data {
@@ -58,36 +99,40 @@ final class TrackService {
         dataTask?.resume()
     }
     
-    func getTrackInfo(_ url: URL, onCompletion: @escaping SingleTrackResult) {
+    func getTrackInfo(_ artist: String, _ trackName: String, onCompletion: @escaping SingleTrackResult) {
         dataTask?.cancel()
-        makeRequest(url: url) { [unowned self] data, error in
-            defer { self.dataTask = nil }
-            if let data = data {
-                let result = self.parseSingleTrack(data)
-                DispatchQueue.main.async {
-                    onCompletion(result, self.errorMessage)
-                }
-            } else {
-                DispatchQueue.main.async {
-                    onCompletion(nil, self.errorMessage)
+        if let url = getUrlBy(usage: UrlUsage.singleTrack(artist, trackName)) {
+            makeRequest(url: url) { [unowned self] data, error in
+                defer { self.dataTask = nil }
+                if let data = data {
+                    let result = self.parseSingleTrack(data)
+                    DispatchQueue.main.async {
+                        onCompletion(result, self.errorMessage)
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        onCompletion(nil, self.errorMessage)
+                    }
                 }
             }
         }
         dataTask?.resume()
     }
     
-    func getTrackList(_ url: URL, onCompletion: @escaping TrackListResult) {
+    func getTrackList(_ albumId: String, onCompletion: @escaping TrackListResult) {
         dataTask?.cancel()
-        makeRequest(url: url) { [unowned self] data, error in
-            defer { self.dataTask = nil }
-            if let data = data {
-                let result = self.parseTrackList(data)
-                DispatchQueue.main.async {
-                    onCompletion(result.tracks, result.albumImage, self.errorMessage)
-                }
-            } else {
-                DispatchQueue.main.async {
-                    onCompletion(nil, "", self.errorMessage)
+        if let url = getUrlBy(usage: UrlUsage.trackList(albumId)) {
+            makeRequest(url: url) { [unowned self] data, error in
+                defer { self.dataTask = nil }
+                if let data = data {
+                    let result = self.parseTrackList(data)
+                    DispatchQueue.main.async {
+                        onCompletion(result.tracks, result.albumImage, self.errorMessage)
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        onCompletion(nil, "", self.errorMessage)
+                    }
                 }
             }
         }
@@ -123,7 +168,7 @@ final class TrackService {
             for track in tracksArray {
                 if let name = track["name"] as? String,
                     let duration = track["duration"] as? String {
-                    result.append(Track(name: name, artist: artistName, duration: duration))
+                    result.append(Track(name: name, artist: artistName, duration: Int(duration)!))
                 }
             }
             
@@ -150,9 +195,9 @@ final class TrackService {
                 let images = albumDictionary["image"] as? JSONArray,
                 let largeImage = images[2]["#text"] as? String {
                 
-                return Track(name: name, artist: artistName, image: largeImage, albumId: albumId, listeners: listeners, playcount: playCount, tags: tagsResult)
+                return Track(name: name, artist: artistName, largeImage: largeImage, albumId: albumId, listeners: Int(listeners)!, playcount: Int(playCount)!, tags: tagsResult)
             } else {
-                return Track(name: name, artist: artistName, listeners: listeners, playcount: playCount, tags: tagsResult)
+                return Track(name: name, artist: artistName, listeners: Int(listeners)!, playcount: Int(playCount)!, tags: tagsResult)
             }
             
         }
@@ -179,9 +224,9 @@ final class TrackService {
                     let artistDictionary = track["artist"] as? JSONDictionary,
                     let artistName = artistDictionary["name"] as? String,
                     let imageArray = track["image"] as? JSONArray,
-                    let smallImage = imageArray[0]["#text"] as? String {
-                    
-                    result.append(Track(name: name, artist: artistName, image: smallImage))
+                    let smallImage = imageArray[0]["#text"] as? String,
+                    let largeImage = imageArray[2]["#text"] as? String {
+                    result.append(Track(name: name, artist: artistName, image: smallImage, largeImage: largeImage))
                 }
             }
             
@@ -198,18 +243,5 @@ final class TrackService {
         return (0, 0)
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     
 }

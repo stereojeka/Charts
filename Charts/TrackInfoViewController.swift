@@ -34,20 +34,15 @@ class TrackInfoViewController: UIViewController, UITableViewDataSource, UITableV
     
     var trackName: String = ""
     var artistName: String = ""
+    var imageLink: String = ""
 
     func getAlbumTrackList() {
-        if var urlComponents = URLComponents(string: "https://ws.audioscrobbler.com/2.0/") {
-            urlComponents.query = "method=album.getinfo&api_key=55b8c3a1d79ea8d23fd7bf19596ed6d1&artist=\(artistName)&album=\(trackName)&format=json"
-            if let url = urlComponents.url {
-                trackService.getTrackList(url) { [unowned self] result, image, errorMessage in
-                    if let result = result {
-                        self.tracks = result
-                        self.trackListTable.reloadData()
-                        self.showContent()
-                        
-                        self.albumImage.downloadedFrom(link: image)
-                    }
-                }
+        trackService.getTrackList(track.albumId) { [unowned self] result, image, errorMessage in
+            if let result = result {
+                self.tracks = result
+                self.trackListTable.reloadData()
+                self.showContent()
+                self.albumImage.downloadedFrom(link: image)
             }
         }
     }
@@ -67,19 +62,16 @@ class TrackInfoViewController: UIViewController, UITableViewDataSource, UITableV
         trackListTable.register(xib, forCellReuseIdentifier: TrackInfoViewController.cellId)
         trackListTable.rowHeight = 60
         
-        if var urlComponents = URLComponents(string: "https://ws.audioscrobbler.com/2.0/") {
-            urlComponents.query = "method=track.getInfo&api_key=55b8c3a1d79ea8d23fd7bf19596ed6d1&artist=\(artistName)&track=\(trackName)&format=json"
-            if let url = urlComponents.url {
-                trackService.getTrackInfo(url) { [unowned self] result, errorMessage in
-                    if let result = result {
-                        self.track = result
-                        self.artistLabel.text! += self.track.artist
-                        self.listenedLabel.text! += self.track.playcount
-                        self.listenersLabel.text! += self.track.listeners
-                        for tag in self.track.tags {
-                            self.tagsLabel.text! += tag + " | "
-                        }
-                    }
+        albumImage.downloadedFrom(link: imageLink)
+        
+        trackService.getTrackInfo(artistName, trackName) { [unowned self] result, errorMessage in
+            if let result = result {
+                self.track = result
+                self.artistLabel.text! += self.track.artist
+                self.listenedLabel.text! += "\(self.track.playcount)"
+                self.listenersLabel.text! += "\(self.track.listeners)"
+                for tag in self.track.tags {
+                    self.tagsLabel.text! += tag + " | "
                 }
             }
         }
@@ -103,7 +95,7 @@ class TrackInfoViewController: UIViewController, UITableViewDataSource, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "trackListCell", for: indexPath) as! AlbumTrackListCell
         
         cell.trackName.text = tracks[indexPath.row].name
-        cell.trackDuration.text = getDurationText(Int(tracks[indexPath.row].duration)!)
+        cell.trackDuration.text = getDurationText(tracks[indexPath.row].duration)
         
         return cell
     }
