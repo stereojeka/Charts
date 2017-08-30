@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="yl2-sM-qoP">
+            <objects>
+                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="SEa-Pe-72u" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="EMa-Aw-uCb" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--All-->
+        <scene sceneID="K9d-eT-Cy5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SEa-Pe-72u" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="All" image="earth-america-7" id="acW-dT-cKf"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Qv1-tO-39w">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="cbx-Wl-lBS" kind="relationship" relationship="rootViewController" id="bOK-HQ-QNs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ugQ-KP-x9c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
+        </scene>
+        <!--Top Tracks In The World-->
+        <scene sceneID="Zkq-re-Ic4">
+            <objects>
+                <tableViewController id="cbx-Wl-lBS" customClass="WorldTrackController" customModule="Charts" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="ypY-qe-SfH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="trackCell" textLabel="K1O-ti-F7v" detailTextLabel="xIh-Cw-CZa" imageView="pGH-aN-avA" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="VaH-X0-CqI">
+                                <rect key="frame" x="0.0" y="28" width="414" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VaH-X0-CqI" id="xlL-9p-yVZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="59.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="K1O-ti-F7v">
+                                            <rect key="frame" x="60" y="12.999999999999998" width="33.333333333333336" height="20.333333333333332"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xIh-Cw-CZa">
+                                            <rect key="frame" x="60" y="33.333333333333329" width="43.666666666666664" height="14.333333333333334"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="music-7" id="pGH-aN-avA">
+                                            <rect key="frame" x="15" y="14" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="PHc-Ws-gbi" kind="show" identifier="ShowTrackInfoFromTop" trigger="accessoryAction" id="SeO-gv-ICh"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="cbx-Wl-lBS" id="OdH-I2-Q4I"/>
+                            <outlet property="delegate" destination="cbx-Wl-lBS" id="Csa-MC-TJz"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Top Tracks In The World" id="6ax-fi-XBn">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="CCL-dR-phE"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="inD-Z0-fzu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1688.8" y="-321.58920539730138"/>
+        </scene>
+        <!--Track Info View Controller-->
+        <scene sceneID="xje-mw-TYG">
+            <objects>
+                <viewController id="PHc-Ws-gbi" customClass="TrackInfoViewController" customModule="Charts" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="to6-md-4w5"/>
+                        <viewControllerLayoutGuide type="bottom" id="vwd-Z0-dYV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JXb-y2-89F">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ikona3-200x200" translatesAutoresizingMaskIntoConstraints="NO" id="NaW-nj-dsl">
+                                <rect key="frame" x="20" y="86" width="160" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="kh1-PY-ke4"/>
+                                    <constraint firstAttribute="height" constant="160" id="uE8-7j-Qle"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By: " textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mRe-Zi-2Du">
+                                <rect key="frame" x="188" y="112" width="206" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Listened: " textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNP-Xt-Krk">
+                                <rect key="frame" x="188" y="141" width="206" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Listeners: " textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TS2-nq-dKB">
+                                <rect key="frame" x="188" y="170" width="206" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tags: " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAU-dU-EuJ">
+                                <rect key="frame" x="20" y="254" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wMc-aI-LZQ">
+                                <rect key="frame" x="20" y="312" width="374" height="375"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="trackListCell" rowHeight="70" id="p5E-go-vTv" customClass="AlbumTrackListCell" customModule="Charts" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p5E-go-vTv" id="rGX-6C-WxD">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="70"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="PHc-Ws-gbi" kind="show" identifier="ShowTrackInfo" id="saF-68-uCw"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="PHc-Ws-gbi" id="bdu-Ep-cH9"/>
+                                    <outlet property="delegate" destination="PHc-Ws-gbi" id="5o9-gO-280"/>
+                                </connections>
+                            </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track list:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Av3-Ax-pks">
+                                <rect key="frame" x="20" y="283" width="81" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vwd-Z0-dYV" firstAttribute="top" secondItem="wMc-aI-LZQ" secondAttribute="bottom" id="0fn-G4-EzF"/>
+                            <constraint firstItem="vAU-dU-EuJ" firstAttribute="top" secondItem="NaW-nj-dsl" secondAttribute="bottom" constant="8" id="1zw-T3-yT4"/>
+                            <constraint firstItem="eNP-Xt-Krk" firstAttribute="leading" secondItem="NaW-nj-dsl" secondAttribute="trailing" constant="8" id="4AO-g0-tWi"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="wMc-aI-LZQ" secondAttribute="leading" id="965-UF-WVL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wMc-aI-LZQ" secondAttribute="trailing" id="A11-dM-5DY"/>
+                            <constraint firstItem="eNP-Xt-Krk" firstAttribute="top" secondItem="mRe-Zi-2Du" secondAttribute="bottom" constant="8" id="CuA-2x-uDu"/>
+                            <constraint firstItem="wMc-aI-LZQ" firstAttribute="top" secondItem="Av3-Ax-pks" secondAttribute="bottom" constant="8" id="DFC-aX-XAD"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="vAU-dU-EuJ" secondAttribute="leading" id="FoB-RV-Nkm"/>
+                            <constraint firstItem="TS2-nq-dKB" firstAttribute="leading" secondItem="NaW-nj-dsl" secondAttribute="trailing" constant="8" id="JcO-uI-wNZ"/>
+                            <constraint firstItem="NaW-nj-dsl" firstAttribute="top" secondItem="to6-md-4w5" secondAttribute="bottom" constant="22" id="Q8K-Tb-IWT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vAU-dU-EuJ" secondAttribute="trailing" id="T5d-KW-KgF"/>
+                            <constraint firstItem="TS2-nq-dKB" firstAttribute="top" secondItem="eNP-Xt-Krk" secondAttribute="bottom" constant="8" id="XLa-lr-aeh"/>
+                            <constraint firstItem="mRe-Zi-2Du" firstAttribute="leading" secondItem="NaW-nj-dsl" secondAttribute="trailing" constant="8" id="alb-Ln-gkC"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Av3-Ax-pks" secondAttribute="leading" id="jyQ-KP-F2y"/>
+                            <constraint firstItem="mRe-Zi-2Du" firstAttribute="top" secondItem="to6-md-4w5" secondAttribute="bottom" constant="48" id="rte-QV-CvZ"/>
+                            <constraint firstItem="Av3-Ax-pks" firstAttribute="top" secondItem="vAU-dU-EuJ" secondAttribute="bottom" constant="8" id="u6B-gZ-l6M"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="NaW-nj-dsl" secondAttribute="leading" id="v1g-wn-hSu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TS2-nq-dKB" secondAttribute="trailing" id="vwF-R8-rLl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eNP-Xt-Krk" secondAttribute="trailing" id="xNJ-gg-EP2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mRe-Zi-2Du" secondAttribute="trailing" id="xnv-P0-n3W"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="albumImage" destination="NaW-nj-dsl" id="cjA-Q1-WlJ"/>
+                        <outlet property="artistLabel" destination="mRe-Zi-2Du" id="CHk-C7-Awn"/>
+                        <outlet property="listenedLabel" destination="eNP-Xt-Krk" id="gsR-P7-Rdd"/>
+                        <outlet property="listenersLabel" destination="TS2-nq-dKB" id="rY5-MA-D9F"/>
+                        <outlet property="tagsLabel" destination="vAU-dU-EuJ" id="mcU-m1-ZcO"/>
+                        <outlet property="trackListLabel" destination="Av3-Ax-pks" id="vqR-Vw-w1y"/>
+                        <outlet property="trackListTable" destination="wMc-aI-LZQ" id="bOn-X6-5Di"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NJT-aK-g0Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2626.0869565217395" y="0.0"/>
+        </scene>
+        <!--Local-->
+        <scene sceneID="2w9-CO-HeA">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EMa-Aw-uCb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Local" image="compass-point-7" id="cPa-gy-q4n">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AZP-8e-CcA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="mm4-LQ-JQT" kind="relationship" relationship="rootViewController" id="zhd-jS-qba"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RAC-W2-QNW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="749.60000000000002" y="359.37031484257875"/>
+        </scene>
+        <!--Local Track Controller-->
+        <scene sceneID="77f-Cw-EKc">
+            <objects>
+                <tableViewController id="mm4-LQ-JQT" customClass="LocalTrackController" customModule="Charts" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="O7V-gn-0KN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="trackCell" textLabel="33M-6X-qgI" detailTextLabel="zgY-Wi-FCA" imageView="lbR-x9-4Mc" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="O2b-eV-C7D">
+                                <rect key="frame" x="0.0" y="28" width="414" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O2b-eV-C7D" id="HOT-Un-V0e">
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="59.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="33M-6X-qgI">
+                                            <rect key="frame" x="60" y="12.999999999999998" width="33.333333333333336" height="20.333333333333332"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zgY-Wi-FCA">
+                                            <rect key="frame" x="60" y="33.333333333333329" width="43.666666666666664" height="14.333333333333334"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="music-7" id="lbR-x9-4Mc">
+                                            <rect key="frame" x="15" y="14" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="PHc-Ws-gbi" kind="show" identifier="ShowTrackInfoFromLocal" trigger="accessoryAction" id="c4M-2n-uz4"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="mm4-LQ-JQT" id="209-If-VXG"/>
+                            <outlet property="delegate" destination="mm4-LQ-JQT" id="ieQ-JG-jwP"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="OyX-nv-NQe"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O4g-xH-ltC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1688.8" y="358.4707646176912"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="compass-point-7" width="30" height="30"/>
+        <image name="earth-america-7" width="30" height="30"/>
+        <image name="ikona3-200x200" width="200" height="200"/>
+        <image name="music-7" width="30" height="30"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="c4M-2n-uz4"/>
+    </inferredMetricsTieBreakers>
+</document>

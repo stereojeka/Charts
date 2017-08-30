@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="trackListCell" rowHeight="50" id="SKo-82-OjQ" customClass="AlbumTrackListCell" customModule="Charts" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SKo-82-OjQ" id="FYW-xE-2qn">
+                <rect key="frame" x="0.0" y="0.0" width="342" height="50"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cf9-GF-1dS">
+                        <rect key="frame" x="289" y="14" width="45" height="21"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOS-80-y3j">
+                        <rect key="frame" x="8" y="14" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Cf9-GF-1dS" firstAttribute="top" secondItem="FYW-xE-2qn" secondAttribute="topMargin" constant="6" id="9nD-HO-Aum"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Cf9-GF-1dS" secondAttribute="trailing" id="9sf-B6-sNf"/>
+                    <constraint firstItem="nOS-80-y3j" firstAttribute="top" secondItem="FYW-xE-2qn" secondAttribute="topMargin" constant="6" id="Tte-yF-xj1"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="nOS-80-y3j" secondAttribute="leading" id="eGE-0v-2PP"/>
+                    <constraint firstItem="Cf9-GF-1dS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nOS-80-y3j" secondAttribute="trailing" constant="20" id="poR-HC-nea"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="trackDuration" destination="Cf9-GF-1dS" id="j62-f3-5DS"/>
+                <outlet property="trackName" destination="nOS-80-y3j" id="3Kv-wz-zA5"/>
+            </connections>
+            <point key="canvasLocation" x="-75" y="-18"/>
+        </tableViewCell>
+    </objects>
+</document>
