@@ -20,11 +20,9 @@ class TrackInfoViewController: UIViewController, UITableViewDataSource, UITableV
     
     private static let cellId = "trackListCell"
     
-    private var trackService: TrackService!
-    
     private var tracks: [Track] = []
     
-    private var track: Track! {
+    var track: Track! {
         didSet {
             if !track.albumId.isEmpty {
                 getAlbumTrackList()
@@ -37,12 +35,12 @@ class TrackInfoViewController: UIViewController, UITableViewDataSource, UITableV
     var imageLink: String = ""
 
     func getAlbumTrackList() {
-        trackService.getTrackList(track.albumId) { [unowned self] result, image, errorMessage in
+        Webservice().load(resource: track.albumTrackList!) { [unowned self] result in
             if let result = result {
                 self.tracks = result
                 self.trackListTable.reloadData()
                 self.showContent()
-                self.albumImage.downloadedFrom(link: image)
+                self.albumImage.downloadedFrom(link: self.track.largeImage)
             }
         }
     }
@@ -55,8 +53,6 @@ class TrackInfoViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        trackService = TrackService.sharedTrackService
-        
         trackListTable.register(AlbumTrackListCell.self, forCellReuseIdentifier: TrackInfoViewController.cellId)
         let xib = UINib(nibName: "AlbumTrackListCell", bundle: nil)
         trackListTable.register(xib, forCellReuseIdentifier: TrackInfoViewController.cellId)
@@ -64,7 +60,7 @@ class TrackInfoViewController: UIViewController, UITableViewDataSource, UITableV
         
         albumImage.downloadedFrom(link: imageLink)
         
-        trackService.getTrackInfo(artistName, trackName) { [unowned self] result, errorMessage in
+        Webservice().load(resource: track.singleTrack!) { [unowned self] result in
             if let result = result {
                 self.track = result
                 self.artistLabel.text! += self.track.artist
@@ -119,6 +115,7 @@ class TrackInfoViewController: UIViewController, UITableViewDataSource, UITableV
         infoVC.navigationItem.title = self.tracks[indexPath.row].name
         infoVC.trackName = self.tracks[indexPath.row].name
         infoVC.artistName = self.tracks[indexPath.row].artist
+        infoVC.track = self.tracks[indexPath.row]
     }
 
 }

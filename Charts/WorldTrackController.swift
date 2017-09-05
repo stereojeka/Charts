@@ -10,23 +10,19 @@ import UIKit
 
 class WorldTrackController: UITableViewController {
     
-    private var trackService: TrackService!
     var isDataLoading: Bool = false
-    var currentPage: Int = 0
-    var totalPages: Int = 1
     let controller = TrackTableViewController()
     
-    func loadMoreTracks() {
-        trackService.getTopTracks(currentPage+1, nil) {
-            [unowned self] results, pageIndex, totalPages, errorMessage in
-            if let results = results {
-                self.controller.tracks.append(contentsOf: results)
+    func loadTopWorldTracks() {
+        Webservice().load(resource: Track.topWorld) { [unowned self] result in
+            if let result = result {
+                self.controller.tracks.append(contentsOf: result)
                 self.tableView.reloadData()
-                self.currentPage = pageIndex + 1
-                self.totalPages = totalPages
-                if !errorMessage.isEmpty { print("Service error: " + errorMessage); }
+            }else{
+                print("Service error.")
             }
         }
+        Track.topWorld.page += 1
     }
 
     override func viewDidLoad() {
@@ -34,8 +30,7 @@ class WorldTrackController: UITableViewController {
         self.tableView.dataSource = controller
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 25
-        trackService = TrackService.sharedTrackService
-        loadMoreTracks()
+        loadTopWorldTracks()
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,9 +45,9 @@ class WorldTrackController: UITableViewController {
     override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if ((tableView.contentOffset.y + tableView.frame.size.height) >= tableView.contentSize.height)
         {
-            if !isDataLoading && currentPage != totalPages {
+            if !isDataLoading {
                 isDataLoading = true
-                loadMoreTracks()
+                loadTopWorldTracks()
             }
         }
     }
@@ -72,6 +67,7 @@ class WorldTrackController: UITableViewController {
         infoVC.trackName = controller.tracks[indexPath.row].name
         infoVC.artistName = controller.tracks[indexPath.row].artist
         infoVC.imageLink = controller.tracks[indexPath.row].largeImage
+        infoVC.track = controller.tracks[indexPath.row]
     }
 
 }

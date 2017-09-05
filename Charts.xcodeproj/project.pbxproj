@@ -15,12 +15,14 @@
 		F3759CA31F55476E001868D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3759CA21F55476E001868D8 /* Assets.xcassets */; };
 		F3759CA61F55476E001868D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3759CA41F55476E001868D8 /* LaunchScreen.storyboard */; };
 		F3759CAE1F554D55001868D8 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3759CAD1F554D55001868D8 /* Track.swift */; };
-		F3759CB21F555017001868D8 /* TrackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3759CB11F555017001868D8 /* TrackService.swift */; };
 		F3759CB41F556774001868D8 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3759CB31F556774001868D8 /* ImageViewExtension.swift */; };
 		F3759CB61F5567E2001868D8 /* TrackTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3759CB51F5567E2001868D8 /* TrackTableViewController.swift */; };
 		F3759CBA1F556A88001868D8 /* WorldTrackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3759CB91F556A88001868D8 /* WorldTrackController.swift */; };
 		F3759CBC1F557ADF001868D8 /* LocalTrackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3759CBB1F557ADF001868D8 /* LocalTrackController.swift */; };
 		F3759CBE1F558CC2001868D8 /* TrackInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3759CBD1F558CC2001868D8 /* TrackInfoViewController.swift */; };
+		F3B05BD61F5EE221007DD6EF /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B05BD51F5EE221007DD6EF /* Resource.swift */; };
+		F3B05BD91F5EE354007DD6EF /* TrackExtensionForNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B05BD81F5EE354007DD6EF /* TrackExtensionForNetworking.swift */; };
+		F3FE581C1F5D558E007F9A53 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FE581B1F5D558E007F9A53 /* Webservice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,12 +36,14 @@
 		F3759CA51F55476E001868D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3759CA71F55476E001868D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3759CAD1F554D55001868D8 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
-		F3759CB11F555017001868D8 /* TrackService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackService.swift; sourceTree = "<group>"; };
 		F3759CB31F556774001868D8 /* ImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		F3759CB51F5567E2001868D8 /* TrackTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackTableViewController.swift; sourceTree = "<group>"; };
 		F3759CB91F556A88001868D8 /* WorldTrackController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldTrackController.swift; sourceTree = "<group>"; };
 		F3759CBB1F557ADF001868D8 /* LocalTrackController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalTrackController.swift; sourceTree = "<group>"; };
 		F3759CBD1F558CC2001868D8 /* TrackInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackInfoViewController.swift; sourceTree = "<group>"; };
+		F3B05BD51F5EE221007DD6EF /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		F3B05BD81F5EE354007DD6EF /* TrackExtensionForNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackExtensionForNetworking.swift; sourceTree = "<group>"; };
+		F3FE581B1F5D558E007F9A53 /* Webservice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +60,9 @@
 		F35BF48F1F56A32D00A27D12 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				F3759CB11F555017001868D8 /* TrackService.swift */,
+				F3FE581B1F5D558E007F9A53 /* Webservice.swift */,
+				F3B05BD51F5EE221007DD6EF /* Resource.swift */,
+				F3B05BD81F5EE354007DD6EF /* TrackExtensionForNetworking.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -216,12 +222,14 @@
 				F3759CBE1F558CC2001868D8 /* TrackInfoViewController.swift in Sources */,
 				F3759CBC1F557ADF001868D8 /* LocalTrackController.swift in Sources */,
 				F3759C9A1F55476E001868D8 /* AppDelegate.swift in Sources */,
+				F3B05BD91F5EE354007DD6EF /* TrackExtensionForNetworking.swift in Sources */,
+				F3B05BD61F5EE221007DD6EF /* Resource.swift in Sources */,
 				F35BF48E1F569AE400A27D12 /* AlbumTrackListCell.swift in Sources */,
+				F3FE581C1F5D558E007F9A53 /* Webservice.swift in Sources */,
 				F3759CB61F5567E2001868D8 /* TrackTableViewController.swift in Sources */,
 				F343A8531F56C46F001EBEB2 /* TrackTableViewCell.swift in Sources */,
 				F3759CAE1F554D55001868D8 /* Track.swift in Sources */,
 				F3759CB41F556774001868D8 /* ImageViewExtension.swift in Sources */,
-				F3759CB21F555017001868D8 /* TrackService.swift in Sources */,
 				F3759CBA1F556A88001868D8 /* WorldTrackController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

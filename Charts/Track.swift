@@ -6,15 +6,13 @@
 //  Copyright © 2017 Admin. All rights reserved.
 //
 
-import Foundation
-
-class Track {
+struct Track {
     
     let name: String
     let artist: String
-    let image: String
-    let largeImage: String
-    let albumId: String
+    var image: String
+    var largeImage: String
+    var albumId: String
     let listeners: Int
     let playcount: Int
     let duration: Int
@@ -31,5 +29,5 @@ class Track {
         self.duration = duration
         self.largeImage = largeImage
     }
-    
+
 }

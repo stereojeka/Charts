@@ -11,8 +11,6 @@ import CoreLocation
 
 class LocalTrackController: UITableViewController, CLLocationManagerDelegate {
     
-    private var trackService: TrackService!
-    
     var locationManager = CLLocationManager()
     var location: CLLocation?
     
@@ -21,13 +19,11 @@ class LocalTrackController: UITableViewController, CLLocationManagerDelegate {
     
     var country: String? {
         didSet {
-            loadMoreTracks(countryName: country!)
+            loadLocalTopTracks(countryName: country!)
         }
     }
     
     var isDataLoading: Bool = false
-    var currentPage: Int = 0
-    var totalPages: Int = 1
     let controller = TrackTableViewController()
     
     func startLocationManager() {
@@ -80,24 +76,23 @@ class LocalTrackController: UITableViewController, CLLocationManagerDelegate {
         }
     }
     
-    func loadMoreTracks(countryName: String){
-        trackService.getTopTracks(currentPage+1, countryName) {
-            [unowned self] results, pageIndex, totalPages, errorMessage in
-            if let results = results {
-                self.controller.tracks.append(contentsOf: results)
+    func loadLocalTopTracks(countryName: String){
+        Track.localTop.country = countryName
+        Webservice().load(resource: Track.localTop){ [unowned self] result in
+            if let result = result {
+                self.controller.tracks.append(contentsOf: result)
                 self.tableView.reloadData()
-                self.currentPage = pageIndex + 1
-                self.totalPages = totalPages
                 self.navigationItem.title = "\(countryName) Top Tracks"
-                if !errorMessage.isEmpty { print("Service error: " + errorMessage); }
+            }else{
+                print("Service error.")
             }
         }
+        Track.localTop.page += 1
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = controller
-        trackService = TrackService.sharedTrackService
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 25
         
@@ -131,10 +126,10 @@ class LocalTrackController: UITableViewController, CLLocationManagerDelegate {
     override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if ((tableView.contentOffset.y + tableView.frame.size.height) >= tableView.contentSize.height)
         {
-            if !isDataLoading && currentPage != totalPages {
+            if !isDataLoading {
                 isDataLoading = true
                 if let country = country {
-                    loadMoreTracks(countryName: country)
+                    loadLocalTopTracks(countryName: country)
                 }
             }
         }
@@ -155,6 +150,7 @@ class LocalTrackController: UITableViewController, CLLocationManagerDelegate {
         infoVC.trackName = controller.tracks[indexPath.row].name
         infoVC.artistName = controller.tracks[indexPath.row].artist
         infoVC.imageLink = controller.tracks[indexPath.row].largeImage
+        infoVC.track = controller.tracks[indexPath.row]
     }
 
 }
