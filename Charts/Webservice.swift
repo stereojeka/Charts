@@ -20,11 +20,16 @@ final class Webservice {
         dataTask = defaultSession.dataTask(with: resource.url!) { data, response, error in
             defer { self.dataTask = nil }
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            guard let data = data,
+            let result: A?
+            if let data = data,
                 let response = response as? HTTPURLResponse,
-                response.statusCode == 200 else { completion(nil); return }
+                response.statusCode == 200 {
+                result = resource.parse(data)
+            } else {
+                result = nil
+            }
             DispatchQueue.main.async {
-                completion(resource.parse(data))
+                completion(result)
             }
         }
         dataTask?.resume()

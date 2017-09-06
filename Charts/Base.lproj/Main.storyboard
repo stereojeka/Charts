@@ -105,7 +105,6 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="cbx-Wl-lBS" id="OdH-I2-Q4I"/>
                             <outlet property="delegate" destination="cbx-Wl-lBS" id="Csa-MC-TJz"/>
                         </connections>
                     </tableView>
@@ -120,7 +119,7 @@
         <!--Track Info View Controller-->
         <scene sceneID="xje-mw-TYG">
             <objects>
-                <viewController id="PHc-Ws-gbi" customClass="TrackInfoViewController" customModule="Charts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InfoVC" id="PHc-Ws-gbi" customClass="TrackInfoViewController" customModule="Charts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="to6-md-4w5"/>
                         <viewControllerLayoutGuide type="bottom" id="vwd-Z0-dYV"/>
@@ -172,13 +171,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="PHc-Ws-gbi" kind="show" identifier="ShowTrackInfo" id="saF-68-uCw"/>
+                                            <segue destination="PHc-Ws-gbi" kind="show" identifier="ShowTrackInfo" trigger="accessoryAction" id="USk-qE-cg2"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="PHc-Ws-gbi" id="bdu-Ep-cH9"/>
-                                    <outlet property="delegate" destination="PHc-Ws-gbi" id="5o9-gO-280"/>
+                                    <outlet property="delegate" destination="PHc-Ws-gbi" id="85C-5H-qdZ"/>
                                 </connections>
                             </tableView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track list:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Av3-Ax-pks">
@@ -304,7 +302,6 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="mm4-LQ-JQT" id="209-If-VXG"/>
                             <outlet property="delegate" destination="mm4-LQ-JQT" id="ieQ-JG-jwP"/>
                         </connections>
                     </tableView>
@@ -321,6 +318,6 @@
         <image name="ikona3-200x200" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="c4M-2n-uz4"/>
+        <segue reference="SeO-gv-ICh"/>
     </inferredMetricsTieBreakers>
 </document>

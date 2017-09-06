@@ -10,46 +10,24 @@ import UIKit
 
 class WorldTrackController: UITableViewController {
     
-    var isDataLoading: Bool = false
-    let controller = TrackTableViewController()
-    
-    func loadTopWorldTracks() {
-        Webservice().load(resource: Track.topWorld) { [unowned self] result in
-            if let result = result {
-                self.controller.tracks.append(contentsOf: result)
-                self.tableView.reloadData()
-            }else{
-                print("Service error.")
-            }
-        }
-        Track.topWorld.page += 1
-    }
+    let scrollController = TableScrollController(resource: Track.topWorld, dataSource: UniversalTableViewController<Track, TrackTableViewCell>(cellId: "trackCell"))
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.dataSource = controller
+        self.tableView.dataSource = self.scrollController.dataSource
+        self.tableView.delegate = self.scrollController
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 25
-        loadTopWorldTracks()
+        self.scrollController.table = self.tableView
+        self.scrollController.loadNextData(resource: Track.topWorld, countryName: nil)
+        self.scrollController.tableSelectCallback = { [weak self] track, tableView, indexPath in
+            self?.performSegue(withIdentifier: "ShowTrackInfoFromTop", sender: tableView.cellForRow(at: indexPath))
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        isDataLoading = false
-    } 
-    
-    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if ((tableView.contentOffset.y + tableView.frame.size.height) >= tableView.contentSize.height)
-        {
-            if !isDataLoading {
-                isDataLoading = true
-                loadTopWorldTracks()
-            }
-        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -63,11 +41,11 @@ class WorldTrackController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let indexPath = tableView.indexPath(for: sender as! UITableViewCell)!
         let infoVC = segue.destination as! TrackInfoViewController
-        infoVC.navigationItem.title = controller.tracks[indexPath.row].name
-        infoVC.trackName = controller.tracks[indexPath.row].name
-        infoVC.artistName = controller.tracks[indexPath.row].artist
-        infoVC.imageLink = controller.tracks[indexPath.row].largeImage
-        infoVC.track = controller.tracks[indexPath.row]
+        infoVC.navigationItem.title = scrollController.dataSource.items[indexPath.row].name
+        infoVC.trackName = scrollController.dataSource.items[indexPath.row].name
+        infoVC.artistName = scrollController.dataSource.items[indexPath.row].artist
+        infoVC.imageLink = scrollController.dataSource.items[indexPath.row].largeImage
+        infoVC.track = scrollController.dataSource.items[indexPath.row]
     }
 
 }

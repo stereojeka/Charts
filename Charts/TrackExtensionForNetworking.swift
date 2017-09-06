@@ -82,7 +82,7 @@ extension Track {
         return arrayOfTracks.flatMap(Track.init(dictionary:))
     })
     
-    static var localTop = Resource<[Track]>(page: 1, method: "geo.gettoptracks", country: nil, parseJSON: { json in
+    static var localTop = Resource<[Track]>(page: 1, method: "geo.gettoptracks", country: "United States", parseJSON: { json in
         guard let result = json as? JSONDictionary,
             let tracks = result["tracks"] as? JSONDictionary,
             let arrayOfTracks = tracks["track"] as? [JSONDictionary] else { return nil }
