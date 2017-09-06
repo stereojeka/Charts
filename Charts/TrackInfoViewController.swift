@@ -29,10 +29,6 @@ class TrackInfoViewController: UIViewController {
             }
         }
     }
-    
-    var trackName: String = ""
-    var artistName: String = ""
-    var imageLink: String = ""
 
     func getAlbumTrackList() {
         Webservice().load(resource: track.albumTrackList!) { [unowned self] result in
@@ -63,7 +59,7 @@ class TrackInfoViewController: UIViewController {
         trackListTable.register(xib, forCellReuseIdentifier: "trackListCell")
         trackListTable.rowHeight = 60
         trackListTable.dataSource = self.trackTableController
-        albumImage.downloadedFrom(link: imageLink)
+        albumImage.downloadedFrom(link: self.track.largeImage)
         
         Webservice().load(resource: track.singleTrack!) { [unowned self] result in
             if let result = result {
@@ -97,8 +93,6 @@ class TrackInfoViewController: UIViewController {
         let indexPath = trackListTable.indexPath(for: sender as! UITableViewCell)!
         let infoVC = segue.destination as! TrackInfoViewController
         infoVC.navigationItem.title = trackTableController.items[indexPath.row].name
-        infoVC.trackName = trackTableController.items[indexPath.row].name
-        infoVC.artistName = trackTableController.items[indexPath.row].artist
         infoVC.track = trackTableController.items[indexPath.row]
     }
 

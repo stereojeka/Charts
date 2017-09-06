@@ -113,9 +113,6 @@ class LocalTrackController: UITableViewController, CLLocationManagerDelegate {
         let indexPath = tableView.indexPath(for: sender as! UITableViewCell)!
         let infoVC = segue.destination as! TrackInfoViewController
         infoVC.navigationItem.title = scrollController.dataSource.items[indexPath.row].name
-        infoVC.trackName = scrollController.dataSource.items[indexPath.row].name
-        infoVC.artistName = scrollController.dataSource.items[indexPath.row].artist
-        infoVC.imageLink = scrollController.dataSource.items[indexPath.row].largeImage
         infoVC.track = scrollController.dataSource.items[indexPath.row]
     }
 
