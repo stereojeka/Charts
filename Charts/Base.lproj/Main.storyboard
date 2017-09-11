@@ -51,7 +51,7 @@
         <!--Top Tracks In The World-->
         <scene sceneID="Zkq-re-Ic4">
             <objects>
-                <tableViewController id="cbx-Wl-lBS" customClass="WorldTrackController" customModule="Charts" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="cbx-Wl-lBS" customClass="TopChartController" customModule="Charts" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" id="ypY-qe-SfH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -100,7 +100,7 @@
                                     <outlet property="artistNameLabel" destination="euz-eO-Lor" id="tww-Th-u2t"/>
                                     <outlet property="trackImageView" destination="nv6-Fc-HZ1" id="SNl-RH-vit"/>
                                     <outlet property="trackNameLabel" destination="CMq-Mp-Yok" id="FLm-LF-DbY"/>
-                                    <segue destination="PHc-Ws-gbi" kind="show" identifier="ShowTrackInfoFromTop" trigger="accessoryAction" id="SeO-gv-ICh"/>
+                                    <segue destination="PHc-Ws-gbi" kind="show" identifier="ShowTrackInfo" trigger="accessoryAction" id="SeO-gv-ICh"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -245,10 +245,10 @@
             </objects>
             <point key="canvasLocation" x="749" y="504"/>
         </scene>
-        <!--Local Track Controller-->
+        <!--Top Chart Controller-->
         <scene sceneID="77f-Cw-EKc">
             <objects>
-                <tableViewController id="mm4-LQ-JQT" customClass="LocalTrackController" customModule="Charts" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="mm4-LQ-JQT" customClass="TopChartController" customModule="Charts" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" id="O7V-gn-0KN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -297,7 +297,7 @@
                                     <outlet property="artistNameLabel" destination="XZH-gY-QVX" id="3ZZ-mF-jWk"/>
                                     <outlet property="trackImageView" destination="0TM-P7-RSw" id="KgS-G3-C9N"/>
                                     <outlet property="trackNameLabel" destination="oWU-1Z-I7g" id="iG3-Yd-vJ2"/>
-                                    <segue destination="PHc-Ws-gbi" kind="show" identifier="ShowTrackInfoFromLocal" trigger="accessoryAction" id="c4M-2n-uz4"/>
+                                    <segue destination="PHc-Ws-gbi" kind="show" identifier="ShowTrackInfo" trigger="accessoryAction" id="c4M-2n-uz4"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

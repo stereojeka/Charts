@@ -6,7 +6,6 @@
 //  Copyright © 2017 Admin. All rights reserved.
 //
 
-import Foundation
 import CoreLocation
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
@@ -68,6 +67,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
             }
         }
     }
-    
+
 }
 
