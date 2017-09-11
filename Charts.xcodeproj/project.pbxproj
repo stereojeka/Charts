@@ -21,6 +21,7 @@
 		F3759CBE1F558CC2001868D8 /* TrackInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3759CBD1F558CC2001868D8 /* TrackInfoViewController.swift */; };
 		F39507981F5FF5E2003570AA /* UniversalTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39507971F5FF5E2003570AA /* UniversalTableViewController.swift */; };
 		F395079A1F601163003570AA /* TableScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39507991F601163003570AA /* TableScrollController.swift */; };
+		F3A13AE51F66957700D73F27 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A13AE41F66957700D73F27 /* LocationManager.swift */; };
 		F3B05BD61F5EE221007DD6EF /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B05BD51F5EE221007DD6EF /* Resource.swift */; };
 		F3B05BD91F5EE354007DD6EF /* TrackExtensionForNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B05BD81F5EE354007DD6EF /* TrackExtensionForNetworking.swift */; };
 		F3FE581C1F5D558E007F9A53 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FE581B1F5D558E007F9A53 /* Webservice.swift */; };
@@ -43,6 +44,7 @@
 		F3759CBD1F558CC2001868D8 /* TrackInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackInfoViewController.swift; sourceTree = "<group>"; };
 		F39507971F5FF5E2003570AA /* UniversalTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversalTableViewController.swift; sourceTree = "<group>"; };
 		F39507991F601163003570AA /* TableScrollController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableScrollController.swift; sourceTree = "<group>"; };
+		F3A13AE41F66957700D73F27 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		F3B05BD51F5EE221007DD6EF /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		F3B05BD81F5EE354007DD6EF /* TrackExtensionForNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackExtensionForNetworking.swift; sourceTree = "<group>"; };
 		F3FE581B1F5D558E007F9A53 /* Webservice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				F3759CBD1F558CC2001868D8 /* TrackInfoViewController.swift */,
 				F39507971F5FF5E2003570AA /* UniversalTableViewController.swift */,
 				F39507991F601163003570AA /* TableScrollController.swift */,
+				F3A13AE41F66957700D73F27 /* LocationManager.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				F3FE581C1F5D558E007F9A53 /* Webservice.swift in Sources */,
 				F343A8531F56C46F001EBEB2 /* TrackTableViewCell.swift in Sources */,
 				F3759CAE1F554D55001868D8 /* Track.swift in Sources */,
+				F3A13AE51F66957700D73F27 /* LocationManager.swift in Sources */,
 				F3759CB41F556774001868D8 /* ImageViewExtension.swift in Sources */,
 				F39507981F5FF5E2003570AA /* UniversalTableViewController.swift in Sources */,
 				F3759CBA1F556A88001868D8 /* WorldTrackController.swift in Sources */,

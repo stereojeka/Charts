@@ -11,65 +11,9 @@ import CoreLocation
 
 class LocalTrackController: UITableViewController, CLLocationManagerDelegate {
     
-    var locationManager = CLLocationManager()
-    var location: CLLocation?
-    
-    let geocoder = CLGeocoder()
-    var placemark: CLPlacemark?
-    
     let scrollController = TableScrollController(resource: Track.localTop, dataSource: UniversalTableViewController<Track, TrackTableViewCell>(cellId: "trackCell"))
     
-    func startLocationManager() {
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.startUpdatingLocation()
-        }
-    }
-    
-    func stopLocationManager() {
-        locationManager.stopUpdatingLocation()
-        locationManager.delegate = nil
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("didFailwithError\(error)")
-        stopLocationManager()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let latestLocation = locations.last!
-        
-        if latestLocation.horizontalAccuracy < 0 {
-            return
-        }
-        if location == nil || location!.horizontalAccuracy > latestLocation.horizontalAccuracy {
-            
-            location = latestLocation
-            stopLocationManager()
-            
-            geocoder.reverseGeocodeLocation(latestLocation, completionHandler: { (placemarks, error) in
-                if error == nil, let placemark = placemarks, !placemark.isEmpty {
-                    self.placemark = placemark.last
-                }
-                
-                self.parsePlacemarks()
-                
-            })
-        }
-    }
-    
-    func parsePlacemarks() {
-        if let _ = location {
-            if let placemark = placemark {
-                if let country = placemark.country, !country.isEmpty {
-                    self.scrollController.loadNextData(resource: self.scrollController.resource, countryName: country)
-                    self.scrollController.resource.page += 1
-                    self.navigationItem.title = "\(country) Top Tracks"
-                }
-            }
-        }
-    }
+    let locationController = LocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,7 +29,7 @@ class LocalTrackController: UITableViewController, CLLocationManagerDelegate {
         
         let authStatus = CLLocationManager.authorizationStatus()
         if authStatus == .notDetermined {
-            locationManager.requestWhenInUseAuthorization()
+            locationController.locationManager.requestWhenInUseAuthorization()
         }
         
         if authStatus == .denied || authStatus == .restricted {
@@ -98,7 +42,12 @@ class LocalTrackController: UITableViewController, CLLocationManagerDelegate {
                     completion: nil)
         }
         
-        startLocationManager()
+        locationController.startLocationManager()
+        locationController.countryReceivedCallback = { [unowned self] country in
+            self.scrollController.loadNextData(resource: self.scrollController.resource, countryName: country)
+            self.scrollController.resource.page += 1
+            self.navigationItem.title = "\(country) Top Tracks"
+        }
     }
 
     override func didReceiveMemoryWarning() {
